@@ -13,8 +13,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "DS18B20.h"
-#include "system.h"
-#include "utils.h"
 
 #ifndef DS18B20_PIN
 #define DS18B20_PIN PORTAbits.RA1
@@ -24,6 +22,13 @@
 #define DS18B20_TRIS TRISAbits.TRISA1
 #endif
 
+static void delay5ms(int multiplier)
+{
+    for (int i=0; i<multiplier; i++)
+    {
+        __delay_us(5000);
+    }
+}
 
 static void _release() {
         DS18B20_TRIS = 1;
